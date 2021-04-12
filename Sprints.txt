@@ -1,0 +1,96 @@
+Monday
+    - Readme work
+        - User Stories
+        - MVP
+        - Stretch
+        - Sprints
+    - Set up Git Repo
+    - Make simple bar chart comparing 1 male value, 1 female value, 1 year
+    - Make chart for one fest with 3 years
+    - Make a toggle between festivals
+        - Add inputs for each festival
+        - Add inputs for each year
+    - Get data in correct format
+        - Simple data (1 fest, 1 year)
+        - One fest data (1 fest, 3 years)
+        - All data (All fests, 3 years)
+        - Emoji Data
+
+Coding
+Styling / Animation
+Git / Logistics
+Data Visuals
+
+
+
+Tuesday 
+    - Readme work    
+        - Wireframes
+            - Decide on how many charts
+                - 1 fest (Change over 3 years)
+                - Choose fests ( 1 year)
+                - All fests (1 year)
+                - All fests (3 years)
+                - Line charts
+                - Scale
+        - Description
+    - Explore Line Charts to show change over time for each fest
+        - Make one line chart for one fest that shows change year over year
+        - make a chart that graphs every line as a different color
+    - Make emojis the data points
+
+Wednesday
+    - Get styling to work correctly
+        - Axis in correct layout, labeling done correctly, padding, margin, ticks, effects
+    - Animation
+        - hover
+        - chart growth Animation
+        - transitions between toggled fests, years
+    - Hit MVP
+
+Thursday
+    - Make the scale
+        - Scale holds stages
+        - Plot surfaces to be stage surfaces
+        - have emojis sit on stage surfaces
+        - create transition of scale moving to correct position
+        - label scales with percentages
+        - animate emojis coming and going on fest / year toggle
+
+Friday
+    - Explore own site hosting
+        - React, Next.js, HTML?
+    - Build out simple site to host data vis
+        - Build out components
+        - Make CSS styles
+        - Plug in data
+
+Saturday
+    - More work on Scale
+    - More work on Scale styling and Animation
+    - Cleaning up personal site
+
+Sunday
+    - Make own site clean and easily navigable
+    - Finalize animation and styling of scale
+
+Monday
+    - Final project presentation prep
+    - Project clean and organized, final commits
+
+
+
+
+
+
+First off, make one bar chart, comparing data, showing male and female, with all music fests
+Second, add all three years to chart
+Third, get this data to work with an individual festival
+Fourth, find out how to toggle between festivals
+Fifth, styling: add effects: color hover, growing chart, transitions
+Sixth: Make the scale
+
+Scale
+    - 1 fest (1 year)
+    - All fests (1 year)
+    🎤🎸🥁🎹🤘🎷🎺🪕
