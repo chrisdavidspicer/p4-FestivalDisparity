@@ -95,3 +95,20 @@ console.log(bealeFemaleA);
 //             let plus_y = 0;
 //             plus_x = 0.1;
 //             plus_y = -0.2;
+
+
+
+const emojis = ['🎤', '🎸', '🥁', '🎹', '🤘']
+
+const newerArray = newArray[0].femaleA.point
+
+const assignEmoji = (arr) => {
+    emojiPoints = []
+    for(const i in arr) {
+        emojiPoints.push(emojis[Math.floor(Math.random() * 5)])
+    }
+    return emojiPoints
+}
+
+assignEmoji(newerArray)
+console.log(emojiPoints);
