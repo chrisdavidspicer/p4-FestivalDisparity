@@ -24,33 +24,54 @@ data = [
     // ["festival", "femaleA", "maleA", "femaleB", "maleB", "femaleC", "maleC"]
   ]
 
+
+
+
 const newArray = []
 function printI(thisData) {
     for(const i in thisData) {
         newArray.push({
             festival: thisData[i]['festival'],
-            femaleA: [...Array(thisData[i]['femaleA']).keys()],
-            maleA: [...Array(thisData[i]['maleA']).keys()],
-            femaleB: [...Array(thisData[i]['femaleB']).keys()],
-            maleB: [...Array(thisData[i]['maleB']).keys()],
-            femaleC: [...Array(thisData[i]['femaleC']).keys()],
-            maleC: [...Array(thisData[i]['maleC']).keys()]
+            femaleA: {
+                value: thisData[i]['femaleA'],
+                point: [...Array(thisData[i]['femaleA']).keys()]
+            },
+            maleA: {
+                value: thisData[i]['maleA'],
+                point: [...Array(thisData[i]['maleA']).keys()]
+            },
+            femaleB: {
+                value: thisData[i]['femaleB'],
+                point: [...Array(thisData[i]['femaleB']).keys()]
+            },
+            maleB: {
+                value: thisData[i]['maleB'],
+                point: [...Array(thisData[i]['maleB']).keys()]
+            },
+            femaleC: {
+                value: thisData[i]['femaleC'],
+                point: [...Array(thisData[i]['femaleC']).keys()]
+            },
+            maleC: {
+                value: thisData[i]['maleC'],
+                point: [...Array(thisData[i]['maleC']).keys()]
+            }
         })
     }
 }
 printI(data);
-console.log(newArray[0].femaleA)
+console.log(newArray[0].femaleA.point)
 
-const bealeFemaleA = []
+const bealeFemaleA = {}
 const createPoints2 = (thisData) => {
 
     for(const i in thisData) {
         bealeFemaleA.push({
-            point: thisData[0].femaleA[i]
+            [i]: thisData[0].femaleA[i]
         })
     }
 }
-createPoints2(newArray);
+createPoints2(newArray[0].femaleA[1]);
 console.log(bealeFemaleA);
 
 

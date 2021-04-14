@@ -24,6 +24,9 @@ html`
 </svg>
 `
 )});
+  main.variable(observer()).define(["md"], function(md){return(
+md`**Showing how SVG elements work**`
+)});
   main.variable(observer()).define(["html"], function(html){return(
 html`<svg viewBox="0 0 250 100" style='border:1px solid'>
   <style>
@@ -31,15 +34,18 @@ html`<svg viewBox="0 0 250 100" style='border:1px solid'>
   </style>
   <rect x="45" y="55" width="60" height="1" />
   <rect x="145" y="55" width="60" height="1" />
-  <text x="62" y="50" class="small">Q</text>
-  <text x="75" y="54.5" class="small">A</text>
-  <text x="55" y="54.5" class="small">s</text>
+  <text x="62" y="50" class="small">🎸</text>
+  <text x="75" y="54.5" class="small">🥁</text>
+  <text x="55" y="54.5" class="small">🎹</text>
   <text x="65" y="54.5" class="small">🤘</text>
   <text x="70" y="50.5" class="small">🎤</text>
   
   
 </svg>
 `
+)});
+  main.variable(observer()).define(["md"], function(md){return(
+md`**Showing how selectAll works**`
 )});
   main.variable(observer()).define(["html","d3","emojis"], function(html,d3,emojis)
 {
@@ -57,23 +63,29 @@ const svg = d3.select(el)
 return svg.selectAll('text').data(emojis)
 }
 );
-  main.variable(observer()).define(["html","d3","data"], function(html,d3,data)
+  main.variable(observer()).define(["md"], function(md){return(
+md`**Mapping 'femaleA' Data to SVG text**`
+)});
+  main.variable(observer()).define(["html","d3","fullArray"], function(html,d3,fullArray)
 {
   const svg = html`
     <svg width=800 height=400 style='border: 1px dashed'>
     </svg>
   `
- 
+  
   d3.select(svg).selectAll('text')
-    .data(data).enter().append('text')
-    .attr('x', (d, i) => i * 33 + 10)
+    .data([fullArray[0]]).enter().append('text')
+    .attr('x', (d, i) => i * 5 + 10)
     .attr('y', (d, i) => i * 16 + 40)
     // .attr('
-    .text((d) => d.femaleA)
+    .text((d) => d.femaleA.point)
   
   return svg
 }
 );
+  main.variable(observer()).define(["md"], function(md){return(
+md`**Mapping Original Data to Random Dots**`
+)});
   main.variable(observer("svg")).define("svg", ["d3","DOM","width","height","data","color"], function(d3,DOM,width,height,data,color)
 { 
   const svg = d3.select(DOM.svg(width, height))
@@ -86,13 +98,16 @@ return svg.selectAll('text').data(emojis)
     .data(data)
     .join("circle")
     .attr("r", d => 5)
-    .attr("cx", (d, i) => Math.random() * 200 + i)
-    .attr("cy", (d, i) => Math.random() * 200 + i)
+    .attr("cx", (d, i) => Math.random() * 100 + i)
+    .attr("cy", (d, i) => Math.random() * 100 + i)
     .style("fill", (d, i) => color(i))
   
   return svg.node()
 }
 );
+  main.variable(observer()).define(["md"], function(md){return(
+md`**Mapping all keys of 'femaleA' data**`
+)});
   main.variable(observer("svg2")).define("svg2", ["d3","DOM","width","height","data"], function(d3,DOM,width,height,data)
 { 
   const svg = d3.select(DOM.svg(width, height))
@@ -102,15 +117,58 @@ return svg.selectAll('text').data(emojis)
   const node = g.append("g")
     .selectAll('text')
     .data(data).enter().append('text')
-    .attr('x', (d, i) => -200 + i)
-    .attr('y', (d, i) => i * 6 + 40)
+    .attr('x', (d, i) => -250 + i)
+    .attr('y', (d, i) => i * 16 - 100)
     .text((d) => [...Array(d.femaleA).keys()])
-  
   return svg.node()
 }
 );
+  main.variable(observer("data")).define("data", ["d3","FileAttachment"], async function(d3,FileAttachment){return(
+d3.csvParse(await FileAttachment("bookmorewomenLarge.csv").text(), d3.autoType)
+)});
   main.variable(observer()).define(["data"], function(data){return(
 data.columns
+)});
+  main.variable(observer("fullArray")).define("fullArray", ["largeArray","data"], function(largeArray,data){return(
+largeArray(data)
+)});
+  main.variable(observer("largeArray")).define("largeArray", function(){return(
+function largeArray(thisData) {
+  const newArray = []
+    for(const i in thisData) {
+        newArray.push({
+            festival: thisData[i]['festival'],
+            femaleA: {
+                value: thisData[i]['femaleA'],
+                point: [...Array(thisData[i]['femaleA']).keys()]
+            },
+            maleA: {
+                value: thisData[i]['maleA'],
+                point: [...Array(thisData[i]['maleA']).keys()]
+            },
+            femaleB: {
+                value: thisData[i]['femaleB'],
+                point: [...Array(thisData[i]['femaleB']).keys()]
+            },
+            maleB: {
+                value: thisData[i]['maleB'],
+                point: [...Array(thisData[i]['maleB']).keys()]
+            },
+            femaleC: {
+                value: thisData[i]['femaleC'],
+                point: [...Array(thisData[i]['femaleC']).keys()]
+            },
+            maleC: {
+                value: thisData[i]['maleC'],
+                point: [...Array(thisData[i]['maleC']).keys()]
+            }
+        })
+    }
+  return newArray
+}
+)});
+  main.variable(observer("emojis")).define("emojis", function(){return(
+['🎤', '🎸', '🥁', '🎹', '🤘']
 )});
   main.variable(observer("m")).define("m", function(){return(
 10
@@ -124,37 +182,11 @@ data.columns
   main.variable(observer("margin")).define("margin", function(){return(
 {top: 20, right: 30, bottom: 30, left: 40}
 )});
-  main.variable(observer("d3")).define("d3", ["require"], function(require){return(
-require("d3@6")
-)});
-  main.variable(observer("emojis")).define("emojis", function(){return(
-['🎤', '🎸', '🥁', '🎹', '🤘']
-)});
-  main.variable(observer("data")).define("data", ["d3","FileAttachment"], async function(d3,FileAttachment){return(
-d3.csvParse(await FileAttachment("bookmorewomenLarge.csv").text(), d3.autoType)
-)});
-  main.variable(observer("fullArray")).define("fullArray", ["largeArray","data"], function(largeArray,data){return(
-largeArray(data)
-)});
-  main.variable(observer("largeArray")).define("largeArray", function(){return(
-function largeArray(thisData) {
-  const newArray = []
-    for(const i in thisData) {
-        newArray.push({
-            festival: thisData[i]['festival'],
-            femaleA: [...Array(thisData[i]['femaleA']).keys()],
-            maleA: [...Array(thisData[i]['maleA']).keys()],
-            femaleB: [...Array(thisData[i]['femaleB']).keys()],
-            maleB: [...Array(thisData[i]['maleB']).keys()],
-            femaleC: [...Array(thisData[i]['femaleC']).keys()],
-            maleC: [...Array(thisData[i]['maleC']).keys()]
-        })
-    }
-  return newArray
-}
-)});
   main.variable(observer("color")).define("color", ["d3","m"], function(d3,m){return(
 d3.scaleSequential(d3.interpolateSinebow).domain([0,m-1])
+)});
+  main.variable(observer("d3")).define("d3", ["require"], function(require){return(
+require("d3@6")
 )});
   return main;
 }
