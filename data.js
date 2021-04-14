@@ -112,3 +112,28 @@ const assignEmoji = (arr) => {
 
 assignEmoji(newerArray)
 console.log(emojiPoints);
+
+{
+    const svg = html`
+      <svg width=800 height=400 style='border: 1px dashed'>
+      </svg>
+    `
+    const femaleArray = fullArray[0].femaleA.point
+    const maleArray = fullArray[0].maleA.point
+    
+    d3.select(svg).selectAll('text')
+      .data(assignEmoji(femaleArray)).enter().append('text')
+      .attr('x', (d, i) => Math.random() * 100 + (i + 100))
+      .attr('y', (d, i) => Math.random() * 100 + (i + 100))
+      // .attr('
+      .text((d) => d)
+    
+    d3.select(svg).selectAll('text')
+      .data(assignEmoji(maleArray)).enter().append('text')
+      .attr('x', (d, i) => Math.random() * 200 + (i + 400))
+      .attr('y', (d, i) => Math.random() * 200 + i)
+      // .attr('
+      .text((d) => d)
+    
+    return svg
+  }
