@@ -94,3 +94,10 @@ Scale
     - 1 fest (1 year)
     - All fests (1 year)
     🎤🎸🥁🎹🤘🎷🎺🪕
+
+
+Map data to an SVG window
+Get Data to show up as emojis
+Get data to show up as random emojis
+get data to cluster
+get data to animate cluster
