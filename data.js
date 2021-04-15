@@ -20,21 +20,38 @@ data = [
     {festival: "Shaky Knees", femaleA: 34, maleA: 66, femaleB: 31, maleB: 69, femaleC: 31, maleC: 69},
     {festival: "Stagecoach", femaleA: 31, maleA: 69, femaleB: 28, maleB: 72, femaleC: 34, maleC: 66},
     {festival: "The Peach", femaleA: 13, maleA: 87, femaleB: 22, maleB: 78, femaleC: 17, maleC: 83},
-    {festival: "Tortuga", femaleA: 28, maleA: 72, femaleB: 43, maleB: 57, femaleC: 7, maleC: 93},
+    {festival: "Tortuga", femaleA: 28, maleA: 72, femaleB: 43, maleB: 57, femaleC: 7, maleC: 93}
     // ["festival", "femaleA", "maleA", "femaleB", "maleB", "femaleC", "maleC"]
   ]
 
 
-console.log(data)
+// console.log(data)
 
-const addUp = (data) => {
-    let total = 0
-    for(const i in data) {
-        total += data[i].femaleA
+// const addUp = (data) => {
+//     let total = 0
+//     for(const i in data) {
+//         total += data[i].femaleA
+//     }
+//     return Math.round(total / data.length)
+// }
+// console.log(addUp(data));
+const festivalAvg = []
+function festAvg(thisData) {
+    for(const i in thisData) {
+        festivalAvg.push({
+            festival: "All Festivals",
+            femaleA: Math.round(d3.mean(data.map(i => i.femaleA))),
+            maleA: Math.round(d3.mean(data.map(i => i.maleA))),
+            femaleB: Math.round(d3.mean(data.map(i => i.femaleB))),
+            maleB: Math.round(d3.mean(data.map(i => i.maleB))),
+            femaleC: Math.round(d3.mean(data.map(i => i.femaleC))),
+            maleC: Math.round(d3.mean(data.map(i => i.maleC)))
+        })
     }
-    return Math.round(total / data.length)
 }
-console.log(addUp(data));
+
+console.log(festAvg(data))
+
 
 const newArray = []
 function printI(thisData) {
@@ -68,19 +85,19 @@ function printI(thisData) {
         })
     }
 }
-printI(data);
-// console.log(newArray[0].femaleA.point)
+// printI(data);
+// // console.log(newArray[0].femaleA.point)
 
-const bealeFemaleA = {}
-const createPoints2 = (thisData) => {
+// const bealeFemaleA = {}
+// const createPoints2 = (thisData) => {
 
-    for(const i in thisData) {
-        bealeFemaleA.push({
-            [i]: thisData[0].femaleA[i]
-        })
-    }
-}
-createPoints2(newArray[0].femaleA[1]);
+//     for(const i in thisData) {
+//         bealeFemaleA.push({
+//             [i]: thisData[0].femaleA[i]
+//         })
+//     }
+// }
+// createPoints2(newArray[0].femaleA[1]);
 // console.log(bealeFemaleA);
 
 
@@ -107,19 +124,19 @@ createPoints2(newArray[0].femaleA[1]);
 
 
 
-const emojis = ['🎤', '🎸', '🥁', '🎹', '🤘']
+// const emojis = ['🎤', '🎸', '🥁', '🎹', '🤘']
 
-const newerArray = newArray[0].femaleA.point
+// const newerArray = newArray[0].femaleA.point
 
-const assignEmoji = (arr) => {
-    emojiPoints = []
-    for(const i in arr) {
-        emojiPoints.push(emojis[Math.floor(Math.random() * 5)])
-    }
-    return emojiPoints
-}
+// const assignEmoji = (arr) => {
+//     emojiPoints = []
+//     for(const i in arr) {
+//         emojiPoints.push(emojis[Math.floor(Math.random() * 5)])
+//     }
+//     return emojiPoints
+// }
 
-assignEmoji(newerArray)
+// assignEmoji(newerArray)
 // console.log(emojiPoints);
 
 // {
@@ -146,3 +163,22 @@ assignEmoji(newerArray)
     
 //     return svg
 //   }
+
+
+// function setYear(yearRadio) {
+//     let year = null
+//     if (yearRadio == "2020") {
+//       let year = "A"
+//       return year
+//     } else if (yearRadio == "2019") {
+//       let year = "B"
+//       return year
+//     } else {
+//         let year = "C"
+//         return year
+//     }
+//   }
+
+//   const yearRadio = "2020"
+
+//   console.log(setYear(yearRadio))

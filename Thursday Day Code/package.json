@@ -1,0 +1,14 @@
+{
+  "name": "9c4b7f9b02843a77",
+  "main": "9c4b7f9b02843a77@334.js",
+  "version": "334.0.0",
+  "homepage": "https://observablehq.com/d/9c4b7f9b02843a77",
+  "author": {
+    "name": "Chris Spicer",
+    "url": "https://observablehq.com/@chrisdavidspicer"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4"
+  }
+}
