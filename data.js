@@ -25,7 +25,16 @@ data = [
   ]
 
 
+console.log(data)
 
+const addUp = (data) => {
+    let total = 0
+    for(const i in data) {
+        total += data[i].femaleA
+    }
+    return Math.round(total / data.length)
+}
+console.log(addUp(data));
 
 const newArray = []
 function printI(thisData) {
@@ -60,7 +69,7 @@ function printI(thisData) {
     }
 }
 printI(data);
-console.log(newArray[0].femaleA.point)
+// console.log(newArray[0].femaleA.point)
 
 const bealeFemaleA = {}
 const createPoints2 = (thisData) => {
@@ -72,7 +81,7 @@ const createPoints2 = (thisData) => {
     }
 }
 createPoints2(newArray[0].femaleA[1]);
-console.log(bealeFemaleA);
+// console.log(bealeFemaleA);
 
 
 // const array2020 = []
@@ -111,29 +120,29 @@ const assignEmoji = (arr) => {
 }
 
 assignEmoji(newerArray)
-console.log(emojiPoints);
+// console.log(emojiPoints);
 
-{
-    const svg = html`
-      <svg width=800 height=400 style='border: 1px dashed'>
-      </svg>
-    `
-    const femaleArray = fullArray[0].femaleA.point
-    const maleArray = fullArray[0].maleA.point
+// {
+//     const svg = html`
+//       <svg width=800 height=400 style='border: 1px dashed'>
+//       </svg>
+//     `
+//     const femaleArray = fullArray[0].femaleA.point
+//     const maleArray = fullArray[0].maleA.point
     
-    d3.select(svg).selectAll('text')
-      .data(assignEmoji(femaleArray)).enter().append('text')
-      .attr('x', (d, i) => Math.random() * 100 + (i + 100))
-      .attr('y', (d, i) => Math.random() * 100 + (i + 100))
-      // .attr('
-      .text((d) => d)
+//     d3.select(svg).selectAll('text')
+//       .data(assignEmoji(femaleArray)).enter().append('text')
+//       .attr('x', (d, i) => Math.random() * 100 + (i + 100))
+//       .attr('y', (d, i) => Math.random() * 100 + (i + 100))
+//       // .attr('
+//       .text((d) => d)
     
-    d3.select(svg).selectAll('text')
-      .data(assignEmoji(maleArray)).enter().append('text')
-      .attr('x', (d, i) => Math.random() * 200 + (i + 400))
-      .attr('y', (d, i) => Math.random() * 200 + i)
-      // .attr('
-      .text((d) => d)
+//     d3.select(svg).selectAll('text')
+//       .data(assignEmoji(maleArray)).enter().append('text')
+//       .attr('x', (d, i) => Math.random() * 200 + (i + 400))
+//       .attr('y', (d, i) => Math.random() * 200 + i)
+//       // .attr('
+//       .text((d) => d)
     
-    return svg
-  }
+//     return svg
+//   }

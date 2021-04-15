@@ -101,3 +101,13 @@ Get Data to show up as emojis
 Get data to show up as random emojis
 get data to cluster
 get data to animate cluster
+
+Working with plain original data:
+    I can use d3.range.map to turn the number into whatever I want: ie. an random emoji
+    I want to select the specific data set after simply importing the whole data set.
+    1 function that takes in the data and parses it depending on what I need it for:
+        if conditionals!
+        if femaleA => give it a certain coordinate
+        if maleA => give it a certain coordinate, and so on
+    Toggles should change the function to use either A, B, or C depending on the year.
+    That could be a variable passed into the function, depending on the radio button clicked.
