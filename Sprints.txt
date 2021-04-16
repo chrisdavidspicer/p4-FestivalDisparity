@@ -96,11 +96,11 @@ Scale
     🎤🎸🥁🎹🤘🎷🎺🪕
 
 
-Map data to an SVG window
+Map data to an SVG window *
 Get Data to show up as emojis
 Get data to show up as random emojis
-get data to cluster
-get data to animate cluster
+get data to cluster *
+get data to animate cluster *
 
 Working with plain original data:
     I can use d3.range.map to turn the number into whatever I want: ie. an random emoji
@@ -111,3 +111,8 @@ Working with plain original data:
         if maleA => give it a certain coordinate, and so on
     Toggles should change the function to use either A, B, or C depending on the year.
     That could be a variable passed into the function, depending on the radio button clicked.
+
+
+Need to label label label!
+Think about hovering?
+Think about React site
