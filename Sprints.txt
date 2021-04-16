@@ -116,3 +116,30 @@ Working with plain original data:
 Need to label label label!
 Think about hovering?
 Think about React site
+
+Friday
+Find examples for percentage bubble and legend
+Label D3 with percentages
+Add middle percentage bubble
+Create legend for D3
+Decide on React, or Next.js
+Build out site
+Plug in D3 to site
+Style CSS
+
+Saturday
+Is scale possible? Find examples
+Plot surfaces to stage / scale
+Scale hold stages / surfaces
+data points sit on surfaces
+Transition of scale moving
+Scale Styling / labels / animation
+More work on website / styles / code cleanup
+
+Sunday
+Add Hover animations
+Experiment with data changes and hovering
+Emojis instead of circles?
+Make sure site is clean and navigable
+Readme breakdown
+
