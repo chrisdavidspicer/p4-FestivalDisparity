@@ -1,5 +1,5 @@
-import define1 from "./654a60e85059f34a@136.js";
-import define2 from "./a2e58f97fd5e8d7c@568.js";
+import define1 from "./forceClusterCollision.js";
+import define2 from "./radio.js";
 
 export default function define(runtime, observer) {
   const main = runtime.module();
