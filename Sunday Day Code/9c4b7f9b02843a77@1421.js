@@ -1,3 +1,4 @@
+// https://observablehq.com/@chrisdavidspicer/the-music-festival-gender-problem@1421
 import define1 from "./654a60e85059f34a@136.js";
 import define2 from "./a2e58f97fd5e8d7c@568.js";
 
@@ -6,52 +7,91 @@ export default function define(runtime, observer) {
   const fileAttachments = new Map([["bookmorewomenLarge.csv",new URL("./files/8e556114141ae212233176a46e12d6d820ac4a7521d0f456cbc099cdca3ceab3faf50a4e749ea34e760b838b2ae0241d717669dc664cae7aa56163c06c2bfafa",import.meta.url)]]);
   main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
   main.variable(observer()).define(["md"], function(md){return(
-md`# Final Notebook`
+md`# The Music Festival Gender Problem`
 )});
   main.variable(observer()).define(["md"], function(md){return(
-md`Select a festival:`
+md`Major Music festivals have a gender inequality problem. Of all the acts booked, the majority of the artists and band members are male. The following is a representation of the data compiled by [Book More Women](https://www.bookmorewomen.com), comparing all-male acts with acts featuring at least one female or non-binary member.`
 )});
-  main.variable(observer("viewof festRadio")).define("viewof festRadio", ["Radio","data"], function(Radio,data){return(
-Radio(data.map(i => i.festival).concat("All Festivals"), {value: "Coachella"})
+  main.variable(observer()).define(["md","viewof festRadio"], function(md,$0){return(
+md`Select a festival: ${$0}`
 )});
-  main.variable(observer("festRadio")).define("festRadio", ["Generators", "viewof festRadio"], (G, _) => G.input(_));
-  main.variable(observer()).define(["md"], function(md){return(
-md`Select a year:`
+  main.variable(observer()).define(["md","viewof yearRadio"], function(md,$0){return(
+md`Select a year: ${$0}`
 )});
-  main.variable(observer("viewof yearRadio")).define("viewof yearRadio", ["Radio"], function(Radio){return(
-Radio(["2020", "2019", "2018"], {value: "2020"})
+  main.variable(observer()).define(["md","displayfest","festRadio","yearRadio"], function(md,displayfest,festRadio,yearRadio){return(
+md`## ${displayfest(festRadio)}, ${yearRadio}`
 )});
-  main.variable(observer("yearRadio")).define("yearRadio", ["Generators", "viewof yearRadio"], (G, _) => G.input(_));
-  main.variable(observer("svg")).define("svg", ["d3","DOM","width","height","nodes","forceClusterCollision"], function(d3,DOM,width,height,nodes,forceClusterCollision)
+  main.variable(observer()).define(["md","chooseFest","matchingFestival","maleYear"], function(md,chooseFest,matchingFestival,maleYear){return(
+md`<h4>${chooseFest(matchingFestival)[maleYear]}% (Percentage of All-Male Bands)</h4>`
+)});
+  main.variable(observer()).define(["md","chooseFest","matchingFestival","femaleYear"], function(md,chooseFest,matchingFestival,femaleYear){return(
+md`<h4>${chooseFest(matchingFestival)[femaleYear]}% (Percentage of Bands with One Female or Non-Binary Member)</h4>`
+)});
+  main.variable(observer("svg")).define("svg", ["html","width","height","d3","nodes","forceClusterCollision"], function(html,width,height,d3,nodes,forceClusterCollision)
 {
-  const svg = d3.select(DOM.svg(width, height))
+  const svg = html`<svg width=${width} height=${height} style='border: 1px solid'></svg>`
   
-  const g = svg.append("g").attr("transform", `translate(${width/2},${height/2})`)
+  const group = d3.select(svg).append("g")
+       .attr("transform", `translate(${width/2},${height/2})`)
   
-  ////////////////////////////////////////////////////////////
-  //////////////////////// Draw nodes ////////////////////////
-  ////////////////////////////////////////////////////////////
-  
-  const node = g.append("g")
-      .selectAll("circle")
+  const node = group.selectAll("circle")
       .data(nodes)
       .join("circle")
       .attr("r", d => d.r)
       .style("fill", d => d.color)
       // .style("stroke", "slategray")
       .style("stroke-width", 1)
+      .on("mouseenter", function(d) {
+        d3.select(this)
+            .style('fill', 'black')
+            .style('transition-duration', '0.2s')
+        text
+            .attr('x', d.x - 340)
+            .attr('y', d.y - 1540)
+            .style('fill', 'rgb(255,255,255,1)') 
+            // .style('transition-duration', '0.2s')
+        rect
+            .attr('x', d.x - 350)
+            .attr('y', d.y - 1560)
+            .style('fill', 'rgb(70,70,70,1')
+            // .style('transition-duration', '0.2s')
+            // .style('stroke', 'rgb(0,0,0,1)')
+            .attr('rx', 5)
+      })
+      .on('mouseleave', function(d) {
+          d3.select(this)
+          .style('fill', d => d.color)
+        text
+            .style('fill', 'rgb(255,255,255,0)')
+            .style('transition-duration', '0.1s')
+        rect
+            .style('fill', 'rgb(200,20,20,0')
+            .style('stroke', 'rgb(0,0,0,0)')
+            .style('transition-duration', '0.1s')
+      })
 
-  ////////////////////////////////////////////////////////////
-  ////////////////////// Run simulation //////////////////////
-  ////////////////////////////////////////////////////////////
+  const rect = group.append('rect')
+        .attr('x', 0)
+        .attr('y', 0)
+        .attr('width', 120)
+        .attr('height', 30)
+        .style('fill', 'rgb(200,20,20,0')
+        .style('rx', 15)
+  
+  const text = group.append('text')
+        .text((d, i) => nodes[i].festival)
+        // .style('text-anchor', 'middle')
+        .attr('x', 0)
+        .attr('y', 0)
+        .style('font-size', '0.75em')
+        .style('fill', 'rgb(255,255,255,0)')
+      
   
   const simulation = d3.forceSimulation()
-        // .force("collide", d3.forceCollide().radius(d => d.r + 1) .strength(0.8)) //Original collide function
-        //Instead use the custom collide function
         .force("collide", forceClusterCollision()
                .radius(d => d.r + 1)
                .strength(0.8)
-               .clusterPadding(10) //new setting - important, the cluster id of the data has to be named "cluster"
+               // .clusterPadding(10)
          )
         .force("x", d3.forceX().x(d => d.focusX).strength(.2))
         .force("y", d3.forceY().y(d => d.focusY).strength(.2))
@@ -60,13 +100,18 @@ Radio(["2020", "2019", "2018"], {value: "2020"})
         .nodes(nodes)
         .on("tick", ticked)
   
+  function hovered() {
+    node
+        .style('fill', 'black')
+  }
+  
   function ticked() {
     node
         .attr("cx", d => d.x)
         .attr("cy", d => d.y)
-  }//function ticked
+  }
   
-  return svg.node()
+  return svg
 }
 );
   main.variable(observer()).define(["md"], function(md){return(
@@ -87,19 +132,22 @@ md`### Data`
 d3.range(chooseFest(matchingFestival)[femaleYear]).map(() => {
   let i = 6
   let r = Math.random() * 10 + 8
+  // let focusX = i + 10
   let focusX = Math.cos(i / m * Math.PI * 2) - 50
+  // let focusY = 10
   let focusY = Math.sin(Math.PI * 2)
   let color = colorF(d3.randomInt(i,9)())
-  let dataPoint = {cluster: i, r: r, x: focusX, y: focusY, focusX: focusX, focusY: focusY, color: color}
- 
+  let dataPoint = {festival: (chooseFest(matchingFestival).festival), cluster: i, r: r, x: focusX, y: focusY, focusX: focusX, focusY: focusY, color: color, gender: 'female', percent: (d3.range(chooseFest(matchingFestival)[femaleYear])).length}
   return dataPoint
 }).concat(d3.range(chooseFest(matchingFestival)[maleYear]).map(() => {
   let i = 6
   let r = Math.random() * 10 + 8
+  // let focusX = 10
   let focusX = Math.cos(i / m * Math.PI * 2) + 50
+  // let focusY = 10
   let focusY = Math.sin(Math.PI * 2)
   let color = colorM(d3.randomInt(i,9)())
-  let dataPoint = {cluster: i, r: r, x: focusX, y: focusY, focusX: focusX, focusY: focusY, color: color}
+  let dataPoint = {festival: (chooseFest(matchingFestival).festival), cluster: i, r: r, x: focusX, y: focusY, focusX: focusX, focusY: focusY, color: color, gender: 'male', percent: (d3.range(chooseFest(matchingFestival)[maleYear])).length}
  
   return dataPoint
 }))
@@ -124,6 +172,15 @@ data.find(
   main.variable(observer()).define(["md"], function(md){return(
 md`### Functions`
 )});
+  main.variable(observer("displayfest")).define("displayfest", function(){return(
+function displayfest(fest){
+  if (fest != "All Festivals") {
+    return `${fest} Music Festival`
+  } else {
+  return fest
+  }
+}
+)});
   main.variable(observer("chooseFest")).define("chooseFest", ["matchingFestival","festivalAvg"], function(matchingFestival,festivalAvg){return(
 function chooseFest() {
   if (!matchingFestival) {
@@ -146,6 +203,17 @@ function setYear(yearRadio) {
 }
 )});
   main.variable(observer()).define(["md"], function(md){return(
+md`### Radio Buttons`
+)});
+  main.variable(observer("viewof festRadio")).define("viewof festRadio", ["Radio","data"], function(Radio,data){return(
+Radio(data.map(i => i.festival).concat("All Festivals"), {value: "All Festivals"})
+)});
+  main.variable(observer("festRadio")).define("festRadio", ["Generators", "viewof festRadio"], (G, _) => G.input(_));
+  main.variable(observer("viewof yearRadio")).define("viewof yearRadio", ["Radio"], function(Radio){return(
+Radio(["2020", "2019", "2018"], {value: "2020"})
+)});
+  main.variable(observer("yearRadio")).define("yearRadio", ["Generators", "viewof yearRadio"], (G, _) => G.input(_));
+  main.variable(observer()).define(["md"], function(md){return(
 md`### Attributes`
 )});
   main.variable(observer("colorF")).define("colorF", ["d3","m"], function(d3,m){return(
@@ -158,10 +226,10 @@ d3.scaleSequential(d3.interpolateGnBu).domain([0,m-1])
 10
 )});
   main.variable(observer("height")).define("height", function(){return(
-500
+400
 )});
   main.variable(observer("width")).define("width", function(){return(
-500
+625
 )});
   main.variable(observer()).define(["md"], function(md){return(
 md`### Libraries`

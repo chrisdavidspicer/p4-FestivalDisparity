@@ -1,6 +1,6 @@
-# Final Notebook
+# The Music Festival Gender Problem
 
-https://observablehq.com/d/9c4b7f9b02843a77@647
+https://observablehq.com/@chrisdavidspicer/the-music-festival-gender-problem@1421
 
 View this notebook in your browser by running a web server in this folder. For
 example:
@@ -21,7 +21,7 @@ Then, import your notebook and the runtime as:
 
 ~~~js
 import {Runtime, Inspector} from "@observablehq/runtime";
-import define from "9c4b7f9b02843a77";
+import define from "@chrisdavidspicer/the-music-festival-gender-problem";
 ~~~
 
 To log the value of the cell named “foo”:
