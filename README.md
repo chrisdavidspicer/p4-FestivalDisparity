@@ -16,7 +16,7 @@ The purpose of this project was to learn the D3.js library, and I chose to do th
 D3 is a challenging and in-depth library that offers huge potential in creating data visualizations, but also creative visualizations as diverse as the engineer's imagination. I learned the basics by diving in to the Observable community and dissecting notebooks created by other data vis engineers. The tutorials by [Mike Bostock](https://observablehq.com/@d3/learn-d3?collection=@d3/learn-d3) and [Shirley Wu](https://observablehq.com/@sxywu/introduction-to-svg-and-d3-js) were especially helpful in breaking down D3 - and it's relationship to SVG - to a simple level, and then building off of that foundation. A lot of trial and error working within the Observable framework helped me work through my code step by step and see my changes live. The project was a challenging but very fun, and I'm excited to go even further into the world of D3 in the future.
 
 ### **Project Links**
-* [Main Project - Hosted](https://chrisdavidspicer.github.io/p4-GraphMoreWomen/)
+* [Main Project - Hosted](https://chrisdavidspicer.github.io/p4-FestivalDisparity/)
 * [Main Project - Observable](https://observablehq.com/@chrisdavidspicer/the-music-festival-gender-problem)
 * [Workspace 1](https://observablehq.com/d/9c8d4f9cecfd3f2e)
 * [Workspace 2](https://observablehq.com/d/ba13a554ed8f30ab)
